@@ -1,0 +1,22 @@
+debug: false
+
+# My Renault
+myRenaultCountry: 'NL'
+myRenaultEmail: john@doe.com
+myRenaultPassword: xxx
+myRenaultVIN: xxx
+
+# Domoticz Server
+dzServer: 192.168.1.234:80
+dzUsername: admin
+dzPassword: ''
+dzPasscode: ''
+
+# Domoticz Devices
+dzChargePowerId: 309       # Watts (Electric Instant+Counter)
+dzBatteryPercentageId: 250 # % (Percentage Sensor)
+dzRangeId: 249             # km (Custom Sensor)
+dzMileageId: 310           # km (Custom Sensor)
+dzExternalTempId: 311      # Degrees C (Temperature Sensor)
+dzBatteryTempId: 312       # Degrees C (Temperature Sensor)
+dzPlugStateId: 313         # on/off (Switch)

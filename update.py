@@ -2,9 +2,14 @@ from fcache.cache import FileCache
 from pyze.api import Gigya, Kamereon, Vehicle
 from domoticz import Domoticz
 import yaml
+import os
 
 class Main:
     def __init__(self):
+        file_path = os.path.dirname(__file__)
+        if file_path != "":
+            os.chdir(file_path)
+
         with open('config.yml', 'r') as ymlfile:
             self.config = yaml.load(ymlfile, Loader=yaml.FullLoader)
 
@@ -28,7 +33,9 @@ class Main:
         dz = self.domoticz
         config = self.config
 
-        if batt['chargeStatus'] == 1:
+        plugged_in, charging = batt['plugStatus'] > 0, batt['chargeStatus'] > 0
+
+        if charging:
             dz.setPower(config['dzChargePowerId'], batt['instantaneousPower'])
         else:
             dz.setPower(config['dzChargePowerId'], 0)
@@ -38,7 +45,7 @@ class Main:
         dz.setValue(config['dzBatteryTempId'], batt['batteryTemperature'])
         dz.setValue(config['dzExternalTempId'], hvac['externalTemperature'])
         dz.setValue(config['dzMileageId'], mileage['totalMileage'])
-        dz.setSwitch(config['dzPlugStateId'], batt['plugStatus'] == 1)
+        dz.setSwitch(config['dzPlugStateId'], plugged_in)
 
         print("Update success!")
 

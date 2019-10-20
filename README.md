@@ -10,7 +10,7 @@ Visit https://renault-wrd-prod-1-euw1-myrapp-one.s3-eu-west-1.amazonaws.com/conf
 Make sure you have python3!
 
 ```
-git clone git@github.com:jamesremuscat/pyze.git
+git clone https://github.com/jamesremuscat/pyze.git
 cd pyze
 
 python3 setup.py install
